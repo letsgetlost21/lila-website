@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lila Factory — Playful, Humorous, Light</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Funnel Display: closest free analogue to Agrandir Grand Bold (chunky, expanded display) -->
+<!-- Archivo: closest free analogue to DIN Pro Light (geometric, slightly condensed body) -->
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;700;800&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    /* Stark monochrome — extracted from the portfolio PDF */
+    --ink: #000000;           /* pure black, used for type + dark sections */
+    --cream: #ffffff;         /* pure white — primary surface */
+    --cream-2: #f2f2f2;       /* faint gray card surface */
+    --lilac: #ffffff;         /* white-on-dark accent */
+    --lilac-deep: #000000;    /* "accent" collapses to black */
+    --plum: #000000;          /* dark section bg */
+    --plum-deep: #000000;     /* deepest section bg */
+    --butter: #ffffff;        /* hover collapses to white */
+    --gray-mid: #353535;
+    --gray-soft: #8f8f8f;
+    --rule: rgba(0, 0, 0, 0.18);
+    --mute: rgba(0, 0, 0, 0.55);
+    --display: "Funnel Display", "Agrandir", system-ui, sans-serif;
+    --body: "Archivo", "DIN Pro", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- TOP NAV ---------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 36px;
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    mix-blend-mode: difference;
+    color: #f3eee4;
+  }
+  .nav .wordmark {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .nav .links { display: flex; gap: 28px; }
+  .nav .links a { position: relative; }
+  .nav .links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+    height: 1px; background: currentColor; transform: scaleX(0);
+    transform-origin: left; transition: transform .35s ease;
+  }
+  .nav .links a:hover::after { transform: scaleX(1); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 36px 36px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-meta {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mute);
+  }
+  .hero-meta .right { text-align: right; }
+  .wordmark-xxl {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(80px, 22vw, 360px);
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 40px 0 0;
+    color: var(--ink);
+  }
+  .wordmark-xxl em {
+    font-style: normal;
+    color: var(--ink);
+  }
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: end;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .hero-tag {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(20px, 1.8vw, 28px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .hero-tag .dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ink); margin: 0 10px 4px; vertical-align: middle;
+  }
+  .hero-year {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-align: right;
+    color: var(--ink);
+  }
+  .hero-year span { color: var(--gray-soft); }
+
+  /* Marquee strip */
+  .marquee {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .marquee-track {
+    display: flex; gap: 56px;
+    padding: 18px 0;
+    white-space: nowrap;
+    animation: scroll 38s linear infinite;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 56px; }
+  .marquee-track .sep {
+    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--ink);
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 120px 36px; position: relative; }
+  .section-label {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 48px;
+  }
+  .section-label::before {
+    content: ""; display: inline-block;
+    width: 28px; height: 1px; background: var(--ink);
+  }
+
+  /* ---------- WHO WE ARE ---------- */
+  .who {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .who-lead {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(34px, 4.2vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+  }
+  .who-lead em { font-style: italic; color: var(--ink); font-family: var(--display); }
+  .who-body {
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 56ch;
+  }
+  .who-body p { margin: 0 0 20px; }
+  .who-body p:first-child {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+  .who-body .pillars {
+    list-style: none; padding: 0; margin: 28px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .who-body .pillars li {
+    display: grid;
+    grid-template-columns: 28px 120px 1fr;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 17px;
+  }
+  .who-body .pillars .num { color: var(--mute); font-size: 12px; letter-spacing: 0.2em; }
+  .who-body .pillars .key {
+    font-family: var(--display); font-weight: 700;
+    font-size: 22px; text-transform: lowercase;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- APPROACH (split) ---------- */
+  .approach {
+    background: var(--plum-deep);
+    color: var(--cream);
+  }
+  .approach .section-label { color: rgba(236, 228, 247, 0.65); }
+  .approach .section-label::before { background: var(--cream); }
+  .approach-head {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(48px, 7vw, 128px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin: 0 0 80px;
+  }
+  .approach-head em { font-style: normal; color: var(--gray-soft); }
+  .approach-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(236, 228, 247, 0.22);
+    border: 1px solid rgba(236, 228, 247, 0.22);
+  }
+  .approach-card {
+    background: var(--plum-deep);
+    padding: 40px 32px 36px;
+    min-height: 280px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .approach-card .word {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(44px, 5vw, 76px);
+    line-height: 0.9; letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .approach-card .arrow {
+    display: inline-block; margin-left: 6px;
+    color: var(--cream);
+  }
+  .approach-card .desc {
+    font-size: 17px; line-height: 1.45;
+    color: rgba(236, 228, 247, 0.82);
+    max-width: 38ch;
+  }
+
+  /* Services */
+  .services {
+    margin-top: 96px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .services h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--cream);
+    text-wrap: balance;
+  }
+  .services-list { list-style: none; margin: 0; padding: 0; }
+  .services-list li {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(236, 228, 247, 0.24);
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(22px, 2.2vw, 32px);
+    letter-spacing: -0.01em;
+  }
+  .services-list li:last-child { border-bottom: 1px solid rgba(236, 228, 247, 0.24); }
+  .services-list .num {
+    font-family: var(--body); font-weight: 400; font-size: 12px;
+    letter-spacing: 0.22em; color: rgba(236, 228, 247, 0.65);
+  }
+  .services-list .tag {
+    font-family: var(--body); font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(236, 228, 247, 0.6);
+  }
+  .services-list li:hover .name { color: var(--gray-soft); }
+  .services-list .name { transition: color .3s ease; }
+
+  /* ---------- WORKS ---------- */
+  .works-intro {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: end; margin-bottom: 64px;
+  }
+  .works-intro h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(56px, 9vw, 168px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .works-intro h2 em { font-style: normal; color: var(--gray-soft); }
+  .works-intro p {
+    font-size: 18px; line-height: 1.5; max-width: 44ch;
+    color: var(--mute);
+    margin: 0;
+  }
+
+  .work-block { margin-top: 80px; }
+  .work-block:first-of-type { margin-top: 0; }
+  .work-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 28px;
+    border-bottom: 1px solid var(--rule); padding-bottom: 18px;
+  }
+  .work-head .cat {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 52px);
+    letter-spacing: -0.02em;
+  }
+  .work-head .count {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-asym { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; }
+  .grid-asym-r { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px; }
+
+  .work-card {
+    display: flex; flex-direction: column;
+    background: var(--cream-2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .work-card image-slot {
+    width: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    display: block !important;
+    height: auto !important;
+  }
+  .work-card.tall image-slot { aspect-ratio: 5 / 7 !important; }
+  .work-card.wide image-slot { aspect-ratio: 5 / 4 !important; }
+  .work-card.square image-slot { aspect-ratio: 1 / 1 !important; }
+  .work-card .caption {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 18px;
+    font-size: 13px; letter-spacing: 0.08em;
+  }
+  .work-card .caption .title { font-family: var(--body); font-weight: 500; }
+  .work-card .caption .meta { color: var(--mute); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 120px 36px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact .section-label { color: rgba(236, 228, 247, 0.65); }
+  .contact .section-label::before { background: var(--cream); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .contact h2 {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(64px, 10vw, 200px);
+    line-height: 0.84;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .contact h2 em { font-style: italic; color: var(--gray-soft); font-family: var(--display); }
+  .contact .cta-list { list-style: none; margin: 0; padding: 0; }
+  .contact .cta-list li {
+    display: grid; grid-template-columns: 90px 1fr;
+    gap: 24px; padding: 22px 0;
+    border-top: 1px solid rgba(236, 228, 247, 0.22);
+    align-items: baseline;
+  }
+  .contact .cta-list li:last-child { border-bottom: 1px solid rgba(236, 228, 247, 0.22); }
+  .contact .cta-list .lab { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(236, 228, 247, 0.6); }
+  .contact .cta-list .val {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 36px);
+    letter-spacing: -0.01em;
+  }
+  .contact .cta-list a:hover { color: var(--gray-soft); }
+
+  .founders {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(236, 228, 247, 0.22);
+  }
+  .founder {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .founder image-slot {
+    width: 64px; height: 64px; border-radius: 999px; flex: none;
+  }
+  .founder .name {
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .founder .role { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(236, 228, 247, 0.6); }
+  .founder a { color: var(--gray-soft); font-size: 13px; }
+
+  .footer {
+    margin-top: 96px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 24px;
+    border-top: 1px solid rgba(236, 228, 247, 0.22);
+    padding-top: 28px;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(236, 228, 247, 0.55);
+  }
+  .footer .big {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(56px, 14vw, 240px);
+    line-height: 0.82; letter-spacing: -0.04em;
+    color: var(--cream); text-transform: uppercase;
+    margin-top: 24px;
+  }
+  .footer .big em { font-style: italic; color: var(--gray-soft); }
+
+  /* responsive */
+  @media (max-width: 880px) {
+    .nav { padding: 16px 18px; }
+    .nav .links { gap: 16px; }
+    section { padding: 80px 18px; }
+    .hero { padding: 90px 18px 28px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 18px; }
+    .hero-year { text-align: left; }
+    .who, .services, .works-intro, .contact-grid, .founders { grid-template-columns: 1fr; gap: 32px; }
+    .approach-grid { grid-template-columns: 1fr; }
+    .grid-2, .grid-3, .grid-asym, .grid-asym-r { grid-template-columns: 1fr; }
+    .who-body .pillars li { grid-template-columns: 28px 90px 1fr; }
+  }
+
+  /* image-slot styling */
+  image-slot {
+    --slot-bg: rgba(26, 13, 58, 0.06);
+    --slot-fg: rgba(26, 13, 58, 0.55);
+    --slot-border: rgba(26, 13, 58, 0.2);
+  }
+  .approach image-slot, .contact image-slot {
+    --slot-bg: rgba(236, 228, 247, 0.08);
+    --slot-fg: rgba(236, 228, 247, 0.6);
+    --slot-border: rgba(236, 228, 247, 0.25);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" data-screen-label="nav">
+  <a class="wordmark" href="#top">Lila Factory</a>
+  <div class="links">
+    <a href="#who">Who we are</a>
+    <a href="#works">Works</a>
+    <a href="#contact">Contacts</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top" data-screen-label="01 hero">
+  <div class="hero-meta">
+    <div>
+      <div>@siamolila</div>
+      <div style="margin-top:6px">MARBELLA · HONG KONG · WORLDWIDE</div>
+    </div>
+    <div class="right">
+      <div>Portfolio 2025–2026</div>
+      <div style="margin-top:6px">Creative Studio</div>
+    </div>
+  </div>
+
+  <h1 class="wordmark-xxl">WANNA
+PLAY?</h1>
+
+  <div class="hero-bottom">
+    <div class="hero-tag">
+      Playful<span class="dot"></span>Humorous<span class="dot"></span>Light
+    </div>
+    <div style="font-size:14px; max-width: 34ch; color: var(--mute); line-height:1.5;">A creative studio that rides the line between fear and curiosity, where good ideas happen.</div>
+    <div class="hero-year">20<span>25</span>—26</div>
+  </div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Brand Identity<i class="sep"></i>Creative Direction<i class="sep"></i>Content &amp; Campaigns<i class="sep"></i>Product Storytelling<i class="sep"></i>Strategic Thinking<i class="sep"></i></span>
+    <span>Brand Identity<i class="sep"></i>Creative Direction<i class="sep"></i>Content &amp; Campaigns<i class="sep"></i>Product Storytelling<i class="sep"></i>Strategic Thinking<i class="sep"></i></span>
+  </div>
+</div>
+
+<!-- ============ WHO WE ARE ============ -->
+<section id="who" data-screen-label="02 who we are">
+  <div class="section-label">Who we are · 01</div>
+  <div class="who">
+    <h2 class="who-lead">In Brahmanism, Līlā is the cosmic play. Creation, not as effort but as expression.</h2>
+    <div class="who-body">
+      <p>
+        Our symbol is a putto riding two snakes. One serpent is fear, the other curiosity.
+        Creation happens in between.
+      </p>
+      <p>Too much fear kills ideas. Too much curiosity without control creates chaos. We ride both seriously, but never solemnly.</p>
+      <ul class="pillars">
+        <li><span class="num">01</span><span class="key">playful</span><span>Ideas that surprise.</span></li>
+        <li><span class="num">02</span><span class="key">humorous</span><span>Ideas that connect.</span></li>
+        <li><span class="num">03</span><span class="key">light</span><span>Ideas that travel easily.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH + SERVICES ============ -->
+<section class="approach" data-screen-label="03 approach">
+  <div class="section-label">Our approach · 02</div>
+  <h2 class="approach-head">
+    We don't believe in<br/>rigid processes.<br/>
+    We believe in <em>intelligent play.</em>
+  </h2>
+
+  <div class="approach-grid">
+    <article class="approach-card">
+      <div class="word">Play<span class="arrow">↗</span><br/>ful.</div>
+      <p class="desc">Ideas that surprise. We chase the unexpected — the small detail that makes you stop and pick something up.</p>
+    </article>
+    <article class="approach-card">
+      <div class="word">Humo<br/>rous<span class="arrow">↗</span></div>
+      <p class="desc">Ideas that connect. Humor is the shortest distance between a brand and the person in front of it.</p>
+    </article>
+    <article class="approach-card">
+      <div class="word">Light<span class="arrow">↗</span></div>
+      <p class="desc">Ideas that travel easily. Stripped of friction — so the message lands fast and stays.</p>
+    </article>
+  </div>
+
+  <div class="services">
+    <h3>The best work happens when you allow yourself to play, seriously.</h3>
+    <ul class="services-list">
+      <li><span class="num">01</span><span class="name">Brand Identity</span><span class="tag">System</span></li>
+      <li><span class="num">02</span><span class="name">Creative Direction</span><span class="tag">Vision</span></li>
+      <li><span class="num">03</span><span class="name">Content &amp; Campaigns</span><span class="tag">Voice</span></li>
+      <li><span class="num">04</span><span class="name">Product Storytelling</span><span class="tag">Narrative</span></li>
+      <li><span class="num">05</span><span class="name">Strategic Thinking</span><span class="tag">Compass</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ WORKS ============ -->
+<section id="works" data-screen-label="04 works">
+  <div class="section-label">Selected works · 03</div>
+  <div class="works-intro">
+    <h2>Things<br/>we <em>made.</em></h2>
+    <p>From concept to print, every detail is intentional: materials, typography, finishes. The goal is simple: make people stop, pick it up, and remember it.</p>
+  </div>
+
+  <!-- LABEL DESIGN -->
+  <div class="work-block">
+    <div class="work-head">
+      <div class="cat">Label Design</div>
+      <div class="count">06 projects</div>
+    </div>
+    <div class="grid-3">
+      <div class="work-card tall">
+        <image-slot id="label-aman" src="assets/p04_1.png" placeholder="Aman Bangkok × Bocktailed label"></image-slot>
+        <div class="caption"><span class="title">Aman Bangkok × Bocktailed</span><span class="meta">01</span></div>
+      </div>
+      <div class="work-card tall">
+        <image-slot id="label-rosewood-chancery" src="assets/p05_1.png" placeholder="Rosewood The Chancery × Bocktailed"></image-slot>
+        <div class="caption"><span class="title">Rosewood The Chancery × Bocktailed</span><span class="meta">02</span></div>
+      </div>
+      <div class="work-card tall">
+        <image-slot id="label-aeromexico" src="assets/p06_1.png" placeholder="Aeromexico × Bocktailed"></image-slot>
+        <div class="caption"><span class="title">Aeromexico × Bocktailed</span><span class="meta">03</span></div>
+      </div>
+      <div class="work-card tall">
+        <image-slot id="label-belmond" src="assets/p07_1.png" placeholder="Belmond Castello di Casole × Bocktailed"></image-slot>
+        <div class="caption"><span class="title">Belmond Castello di Casole × Bocktailed</span><span class="meta">04</span></div>
+      </div>
+      <div class="work-card tall">
+        <image-slot id="label-castiglion" src="assets/p08_1.png" placeholder="Rosewood Castiglion del Bosco × Bocktailed"></image-slot>
+        <div class="caption"><span class="title">Rosewood Castiglion del Bosco × Bocktailed</span><span class="meta">05</span></div>
+      </div>
+      <div class="work-card tall">
+        <image-slot id="label-lattine" src="assets/p09_1.png" placeholder="Bocktailed Lattine"></image-slot>
+        <div class="caption"><span class="title">Bocktailed Lattine</span><span class="meta">06</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADVERTISING -->
+  <div class="work-block">
+    <div class="work-head">
+      <div class="cat">Advertising</div>
+      <div class="count">Campaigns that don't get scrolled past</div>
+    </div>
+    <div class="grid-asym">
+      <div class="work-card wide">
+        <image-slot id="ad-aeromexico" src="assets/p11_1.png" placeholder="Aeromexico × Bocktailed campaign"></image-slot>
+        <div class="caption"><span class="title">Aeromexico × Bocktailed</span><span class="meta">02</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="ad-secondary" src="assets/p06_2.png" placeholder="Campaign visual"></image-slot>
+        <div class="caption"><span class="title">Campaign visual</span><span class="meta">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATIVE DIRECTION -->
+  <div class="work-block">
+    <div class="work-head">
+      <div class="cat">Creative Direction</div>
+      <div class="count">From concept to shoot</div>
+    </div>
+    <div class="grid-2" style="margin-bottom:24px">
+      <div class="work-card wide">
+        <image-slot id="cd-seibellissimi-doc" src="assets/p13_1.png" placeholder="SeiBellissimi — video documentary"></image-slot>
+        <div class="caption"><span class="title">SeiBellissimi — documentary</span><span class="meta">05</span></div>
+      </div>
+      <div class="work-card wide">
+        <image-slot id="cd-seibellissimi-com" src="assets/p14_1.png" placeholder="SeiBellissimi — commercial video"></image-slot>
+        <div class="caption"><span class="title">SeiBellissimi — commercial</span><span class="meta">06</span></div>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="work-card square">
+        <image-slot id="cd-bocktailed-photo" src="assets/p15_1.png" placeholder="Bocktailed — photo shooting"></image-slot>
+        <div class="caption"><span class="title">Bocktailed</span><span class="meta">01</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="cd-ratafia" src="assets/p17_1.png" placeholder="Ratafia Rossi — photo shooting"></image-slot>
+        <div class="caption"><span class="title">Ratafia Rossi</span><span class="meta">02</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="cd-seibellissimi-photo" src="assets/p19_1.png" placeholder="SeiBellissimi — photo shooting"></image-slot>
+        <div class="caption"><span class="title">SeiBellissimi</span><span class="meta">02</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="cd-mancino" src="assets/p21_1.png" placeholder="Mancino Vermouth — photo shooting"></image-slot>
+        <div class="caption"><span class="title">Mancino Vermouth</span><span class="meta">03</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="cd-rinomato" src="assets/p23_1.png" placeholder="Rinomato Aperitivo — photo shooting"></image-slot>
+        <div class="caption"><span class="title">Rinomato Aperitivo</span><span class="meta">04</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="cd-extra" src="assets/p15_2.png" placeholder="Behind the scenes"></image-slot>
+        <div class="caption"><span class="title">Behind the scenes</span><span class="meta">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAND IDENTITY -->
+  <div class="work-block">
+    <div class="work-head">
+      <div class="cat">Brand Identity</div>
+      <div class="count">Clear · Consistent · Confident</div>
+    </div>
+    <div class="grid-2">
+      <div class="work-card wide">
+        <image-slot id="bi-anto" src="assets/p27_1.png" placeholder="ANTO — Pizza e Aperitivi (Singapore)"></image-slot>
+        <div class="caption"><span class="title">ANTO — Pizza e Aperitivi · Singapore</span><span class="meta">01</span></div>
+      </div>
+      <div class="work-card wide">
+        <image-slot id="bi-samset" src="assets/p28_1.png" placeholder="Samset Garden (Rome)"></image-slot>
+        <div class="caption"><span class="title">Samset Garden · Rome</span><span class="meta">02</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="work-block">
+    <div class="work-head">
+      <div class="cat">Social Media</div>
+      <div class="count">Ongoing conversations</div>
+    </div>
+    <div class="grid-3">
+      <div class="work-card square">
+        <image-slot id="sm-seibellissimi" src="assets/p30_1.png" placeholder="@seibellissimi grid"></image-slot>
+        <div class="caption"><span class="title">@seibellissimi</span><span class="meta">01</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="sm-anto" src="assets/p30_2.png" placeholder="@anto.pizzeria grid"></image-slot>
+        <div class="caption"><span class="title">@anto.pizzeria</span><span class="meta">02</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="sm-bocktailed" src="assets/p30_3.png" placeholder="@bocktailed grid"></image-slot>
+        <div class="caption"><span class="title">@bocktailed</span><span class="meta">03</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="sm-ratafia" src="assets/p30_4.png" placeholder="@ratafiarossi grid"></image-slot>
+        <div class="caption"><span class="title">@ratafiarossi</span><span class="meta">04</span></div>
+      </div>
+      <div class="work-card square">
+        <image-slot id="sm-mancino" src="assets/p30_5.png" placeholder="@mancinovermouth grid"></image-slot>
+        <div class="caption"><span class="title">@mancinovermouth</span><span class="meta">05</span></div>
+      </div>
+      <div class="work-card square" style="background:var(--ink); color:var(--cream); justify-content:center; align-items:center; padding: 32px; text-align:center;">
+        <div style="font-family: var(--display); font-weight:700; font-size: 28px; line-height:1; letter-spacing:-0.01em">+ Your<br/>brand<br/>next.</div>
+        <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; opacity: .6; margin-top: 16px;">Get in touch</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBSITES section removed -->
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact" data-screen-label="05 contact">
+  <div class="section-label">Get in touch · 04</div>
+  <div class="contact-grid">
+    <h2>Let's <em>play.</em></h2>
+    <ul class="cta-list">
+      <li><span class="lab">Email</span><a class="val" href="mailto:info@lilafactory.com">info@lilafactory.com</a></li>
+      <li><span class="lab">Instagram</span><a class="val" href="https://instagram.com/siamolila" target="_blank" rel="noopener">@siamolila ↗</a></li>
+      <li><span class="lab">Studio</span><span class="val">worldwide</span></li>
+    </ul>
+  </div>
+
+  <div class="founders">
+    <div class="founder">
+      <image-slot id="founder-michela" placeholder="Michela Mancino" shape="circle"></image-slot>
+      <div>
+        <div class="name">Michela Mancino</div>
+        <div class="role">Co-founder · Creative</div>
+        <a href="https://instagram.com/michela_mancino" target="_blank" rel="noopener">@michela_mancino ↗</a>
+      </div>
+    </div>
+    <div class="founder">
+      <image-slot id="founder-cristiano" placeholder="Cristiano Demurtas" shape="circle"></image-slot>
+      <div>
+        <div class="name">Cristiano Demurtas</div>
+        <div class="role">Co-founder · Direction</div>
+        <a href="https://instagram.com/cristianodemurtas" target="_blank" rel="noopener">@cristianodemurtas ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>© 2025 · 2026 Lila Factory</div>
+    <div>Playful · Humorous · Light</div>
+  </div>
+  <div class="footer big">Li<em>l</em>a Factory</div>
+</section>
+
+</body>
+</html>
