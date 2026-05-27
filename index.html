@@ -374,6 +374,32 @@
   .work-card .caption .title { font-family: var(--body); font-weight: 500; }
   .work-card .caption .meta { color: var(--mute); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
 
+  /* Hover/focus effects for clickable cards (Instagram + mailto) */
+  a.work-card {
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  a.work-card:hover,
+  a.work-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  }
+  a.work-card:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+  a.work-card .caption .title::after {
+    content: " ↗";
+    display: inline-block;
+    margin-left: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  a.work-card:hover .caption .title::after,
+  a.work-card:focus-visible .caption .title::after {
+    opacity: 1;
+  }
+
   /* ---------- CONTACT ---------- */
   .contact {
     background: var(--ink);
