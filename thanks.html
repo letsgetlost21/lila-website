@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Got it — Lila Factory</title>
+<meta name="description" content="Thanks for reaching out. We'll be in touch within 48 hours." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;700;800&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #000000;
+    --cream: #ffffff;
+    --gray-soft: #8f8f8f;
+    --mute: rgba(0, 0, 0, 0.55);
+    --rule: rgba(0, 0, 0, 0.18);
+    --display: "Funnel Display", "Agrandir", system-ui, sans-serif;
+    --body: "Archivo", "DIN Pro", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.45;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 36px;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .nav .wordmark { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+  .nav .back { position: relative; }
+  .nav .back::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+    height: 1px; background: currentColor; transform: scaleX(0);
+    transform-origin: left; transition: transform .35s ease;
+  }
+  .nav .back:hover::after { transform: scaleX(1); }
+
+  main {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 36px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .meta {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 48px;
+  }
+  .meta::before {
+    content: ""; display: inline-block;
+    width: 28px; height: 1px; background: var(--ink);
+    margin-right: 14px; vertical-align: middle;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(64px, 14vw, 220px);
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 0 0 32px;
+  }
+  h1 em { font-style: italic; color: var(--gray-soft); font-family: var(--display); }
+  .lead {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    max-width: 28ch;
+    margin: 0 0 48px;
+  }
+  .cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px;
+    transition: gap 0.25s ease;
+  }
+  .cta:hover { gap: 18px; }
+
+  footer {
+    padding: 28px 36px;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; gap: 24px;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mute);
+  }
+  @media (max-width: 880px) {
+    .nav { padding: 16px 18px; }
+    main { padding: 60px 18px; }
+    footer { padding: 24px 18px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="wordmark" href="/">Lila Factory</a>
+  <a class="back" href="/">← Back home</a>
+</nav>
+
+<main>
+  <div class="meta">We got it · Reply within 48h</div>
+  <h1>Got <em>it.</em></h1>
+  <p class="lead">Your message landed. Michela or Cristiano will write back, often sooner than 48 hours.</p>
+  <a class="cta" href="/">Back to the work →</a>
+</main>
+
+<footer>
+  <div>© 2025 · 2026 Lila Factory</div>
+  <div>Playful · Humorous · Light</div>
+</footer>
+
+</body>
+</html>
