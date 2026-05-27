@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Let's play — Lila Factory</title>
+<meta name="description" content="Start a project with Lila Factory. Tell us about your brand — we reply within 48 hours." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;700;800&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #000000;
+    --cream: #ffffff;
+    --cream-2: #f2f2f2;
+    --gray-mid: #353535;
+    --gray-soft: #8f8f8f;
+    --rule: rgba(0, 0, 0, 0.18);
+    --mute: rgba(0, 0, 0, 0.55);
+    --display: "Funnel Display", "Agrandir", system-ui, sans-serif;
+    --body: "Archivo", "DIN Pro", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 36px;
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .nav .wordmark {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .nav .back {
+    position: relative;
+  }
+  .nav .back::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px;
+    height: 1px; background: currentColor; transform: scaleX(0);
+    transform-origin: left; transition: transform .35s ease;
+  }
+  .nav .back:hover::after { transform: scaleX(1); }
+
+  /* page header */
+  .page {
+    min-height: 100vh;
+    padding: 140px 36px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .page-meta {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 48px;
+  }
+  .page-meta::before {
+    content: ""; display: inline-block;
+    width: 28px; height: 1px; background: var(--ink);
+    margin-right: 14px; vertical-align: middle;
+  }
+  .page-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(60px, 10vw, 160px);
+    line-height: 0.84;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin: 0 0 32px;
+  }
+  .page-title em { font-style: italic; color: var(--gray-soft); font-family: var(--display); }
+  .page-lead {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(22px, 2vw, 28px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    max-width: 36ch;
+    color: var(--ink);
+  }
+  .page-side-note {
+    font-size: 14px; line-height: 1.55; color: var(--mute);
+    margin-top: 32px;
+    max-width: 36ch;
+  }
+
+  /* form */
+  form { display: flex; flex-direction: column; gap: 28px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-family: var(--body);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .field label .req { color: var(--ink); }
+  .field input, .field textarea {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 8px 0 12px;
+    width: 100%;
+    transition: border-color 0.25s ease;
+  }
+  .field input:focus, .field textarea:focus {
+    outline: 0;
+    border-bottom-color: var(--ink);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .field input::placeholder, .field textarea::placeholder {
+    color: var(--gray-soft);
+    opacity: 0.7;
+  }
+  .submit-row {
+    display: flex; justify-content: flex-end; align-items: center; gap: 24px;
+    margin-top: 16px;
+  }
+  .submit-note {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mute);
+  }
+  button.submit {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--cream);
+    border: 0;
+    padding: 20px 36px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  button.submit:hover, button.submit:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  }
+  button.submit:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+  button.submit .arrow { display: inline-block; margin-left: 8px; }
+
+  /* honeypot — visible only to bots */
+  .honeypot { position: absolute; left: -9999px; top: -9999px; visibility: hidden; }
+
+  /* footer */
+  .footer {
+    padding: 32px 36px 28px;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  @media (max-width: 880px) {
+    .nav { padding: 16px 18px; }
+    .page { grid-template-columns: 1fr; padding: 110px 18px 60px; gap: 48px; }
+    .footer { padding: 24px 18px; flex-direction: column; align-items: flex-start; }
+    .submit-row { flex-direction: column-reverse; align-items: stretch; gap: 16px; }
+    .submit-row .submit-note { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="wordmark" href="/">Lila Factory</a>
+  <a class="back" href="/">← Back</a>
+</nav>
+
+<main class="page">
+  <aside>
+    <div class="page-meta">Start a project · 01</div>
+    <h1 class="page-title">Let's <em>play.</em></h1>
+    <p class="page-lead">Tell us about your brand, your idea, your stuck-in-the-mud problem — anything in between.</p>
+    <p class="page-side-note">We read every message ourselves. Expect a reply from Michela or Cristiano within 48 hours, often sooner.</p>
+  </aside>
+
+  <form action="https://formsubmit.co/info@lilafactory.com" method="POST">
+    <!-- Formsubmit configuration (hidden) -->
+    <input type="hidden" name="_subject" value="New project inquiry — Lila Factory" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_next" value="https://lilafactory.com/thanks.html" />
+    <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" />
+
+    <div class="field">
+      <label for="name">Your name <span class="req">*</span></label>
+      <input type="text" id="name" name="name" placeholder="e.g. Maria Rossi" required />
+    </div>
+
+    <div class="field">
+      <label for="email">Email <span class="req">*</span></label>
+      <input type="email" id="email" name="email" placeholder="you@yourbrand.com" required />
+    </div>
+
+    <div class="field">
+      <label for="brand">Brand / company</label>
+      <input type="text" id="brand" name="brand" placeholder="Optional — but it helps" />
+    </div>
+
+    <div class="field">
+      <label for="message">Tell us about your idea <span class="req">*</span></label>
+      <textarea id="message" name="message" placeholder="A few lines are enough. We'll ask the rest." required></textarea>
+    </div>
+
+    <div class="submit-row">
+      <span class="submit-note">We reply within 48h</span>
+      <button type="submit" class="submit">Send<span class="arrow">→</span></button>
+    </div>
+  </form>
+</main>
+
+<footer class="footer">
+  <div>© 2025 · 2026 Lila Factory</div>
+  <div>Playful · Humorous · Light</div>
+</footer>
+
+</body>
+</html>
