@@ -349,6 +349,7 @@
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .grid-asym { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; }
   .grid-asym-r { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px; }
+  .ad-solo { max-width: 70%; }
 
   .work-card {
     display: flex; flex-direction: column;
@@ -461,6 +462,7 @@
     .who, .services, .works-intro, .contact-grid, .founders { grid-template-columns: 1fr; gap: 32px; }
     .approach-grid { grid-template-columns: 1fr; }
     .grid-2, .grid-3, .grid-asym, .grid-asym-r { grid-template-columns: 1fr; }
+    .ad-solo { max-width: 100%; }
     .who-body .pillars li { grid-template-columns: 28px 90px 1fr; }
   }
 
@@ -625,14 +627,10 @@ PLAY?</h1>
       <div class="cat">Advertising</div>
       <div class="count">Campaigns that don't get scrolled past</div>
     </div>
-    <div class="grid-asym">
+    <div class="ad-solo">
       <div class="work-card wide">
-        <image-slot id="ad-aeromexico" src="assets/p11_1.png" placeholder="Aeromexico × Bocktailed campaign"></image-slot>
-        <div class="caption"><span class="title">Aeromexico × Bocktailed</span><span class="meta">02</span></div>
-      </div>
-      <div class="work-card square">
-        <image-slot id="ad-secondary" src="assets/p06_2.png" placeholder="Campaign visual"></image-slot>
-        <div class="caption"><span class="title">Campaign visual</span><span class="meta">—</span></div>
+        <image-slot id="ad-coqtail" src="assets/p11_1.png" placeholder="SeiBellissimi × Coqtail"></image-slot>
+        <div class="caption"><span class="title">SeiBellissimi × Coqtail</span><span class="meta">01</span></div>
       </div>
     </div>
   </div>
@@ -750,7 +748,7 @@ PLAY?</h1>
 
   <div class="founders">
     <div class="founder">
-      <image-slot id="founder-michela" placeholder="Michela Mancino" shape="circle"></image-slot>
+      <image-slot id="founder-michela" src="assets/founder_michela.png" placeholder="Michela Mancino" shape="circle"></image-slot>
       <div>
         <div class="name">Michela Mancino</div>
         <div class="role">Co-founder · Creative</div>
@@ -758,7 +756,7 @@ PLAY?</h1>
       </div>
     </div>
     <div class="founder">
-      <image-slot id="founder-cristiano" placeholder="Cristiano Demurtas" shape="circle"></image-slot>
+      <image-slot id="founder-cristiano" src="assets/founder_cristiano.png" placeholder="Cristiano Demurtas" shape="circle"></image-slot>
       <div>
         <div class="name">Cristiano Demurtas</div>
         <div class="role">Co-founder · Direction</div>
