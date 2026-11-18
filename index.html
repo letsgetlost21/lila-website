@@ -485,6 +485,30 @@
   }
   .footer-big em { font-style: italic; color: var(--gray-soft); }
 
+
+  /* ---------- CLIENTS MARQUEE ---------- */
+  .clients { margin: 0 -36px 96px; }
+  .clients-label {
+    padding: 0 36px 20px; font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--mute);
+  }
+  .clients-row {
+    overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .clients-track {
+    display: flex; width: max-content; gap: 72px; padding: 30px 0;
+    animation: scroll 60s linear infinite;
+  }
+  .clients-track span {
+    font-family: var(--display); font-weight: 500; white-space: nowrap;
+    font-size: clamp(22px, 2.4vw, 34px); letter-spacing: -0.01em; color: var(--ink);
+  }
+  .clients-row:hover .clients-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) { .clients-track, .marquee-track { animation: none; } }
+  @media (max-width: 880px) { .clients { margin: 0 -18px 64px; } .clients-label { padding: 0 18px 16px; } }
+
   /* responsive */
   @media (max-width: 880px) {
     .nav { padding: 16px 18px; }
@@ -618,6 +642,12 @@ PLAY.</h1>
   <div class="works-intro">
     <h2>Things<br/>we <em>made.</em></h2>
     <p>From concept to print, every detail is intentional: materials, typography, finishes. The goal is simple: make people stop, pick it up, and remember it.</p>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="clients">
+    <div class="clients-label">In good company</div>
+    <div class="clients-row"><div class="clients-track"><span>Aman Bangkok</span><span>Rosewood</span><span>Belmond</span><span>Aeromexico</span><span>ANTO</span><span>SeiBellissimi</span><span>Bocktailed</span><span>Mancino Vermouth</span><span>Ratafia Rossi</span><span>Rinomato</span><span aria-hidden="true"></span><span aria-hidden="true">Aman Bangkok</span><span aria-hidden="true">Rosewood</span><span aria-hidden="true">Belmond</span><span aria-hidden="true">Aeromexico</span><span aria-hidden="true">ANTO</span><span aria-hidden="true">SeiBellissimi</span><span aria-hidden="true">Bocktailed</span><span aria-hidden="true">Mancino Vermouth</span><span aria-hidden="true">Ratafia Rossi</span><span aria-hidden="true">Rinomato</span><span aria-hidden="true"></span></div></div>
   </div>
 
   <!-- LABEL DESIGN -->
