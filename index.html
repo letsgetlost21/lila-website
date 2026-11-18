@@ -17,7 +17,6 @@
 <!-- Funnel Display: closest free analogue to Agrandir Grand Bold (chunky, expanded display) -->
 <!-- Archivo: closest free analogue to DIN Pro Light (geometric, slightly condensed body) -->
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;700;800&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet" />
-<script src="image-slot.js"></script>
 <style>
   :root {
     /* Stark monochrome — extracted from the portfolio PDF */
@@ -365,15 +364,12 @@
     border-radius: 2px;
     overflow: hidden;
   }
-  .work-card image-slot {
-    width: 100% !important;
-    aspect-ratio: 4 / 5 !important;
-    display: block !important;
-    height: auto !important;
+  .work-card img {
+    width: 100%; aspect-ratio: 4 / 5; display: block; height: auto; object-fit: cover;
   }
-  .work-card.tall image-slot { aspect-ratio: 5 / 7 !important; }
-  .work-card.wide image-slot { aspect-ratio: 5 / 4 !important; }
-  .work-card.square image-slot { aspect-ratio: 1 / 1 !important; }
+  .work-card.tall img { aspect-ratio: 5 / 7; }
+  .work-card.wide img { aspect-ratio: 5 / 4; }
+  .work-card.square img { aspect-ratio: 1 / 1; }
   .work-card .caption {
     display: flex; justify-content: space-between; align-items: center;
     padding: 14px 18px;
@@ -457,8 +453,8 @@
   .founder {
     display: flex; gap: 16px; align-items: center;
   }
-  .founder image-slot {
-    width: 64px; height: 64px; border-radius: 999px; flex: none;
+  .founder img {
+    width: 64px; height: 64px; border-radius: 999px; flex: none; object-fit: cover;
   }
   .founder .name {
     font-family: var(--display); font-weight: 700; font-size: 20px;
@@ -524,17 +520,6 @@
     .who-body .pillars li { grid-template-columns: 28px 90px 1fr; }
   }
 
-  /* image-slot styling */
-  image-slot {
-    --slot-bg: rgba(26, 13, 58, 0.06);
-    --slot-fg: rgba(26, 13, 58, 0.55);
-    --slot-border: rgba(26, 13, 58, 0.2);
-  }
-  .approach image-slot, .contact image-slot {
-    --slot-bg: rgba(236, 228, 247, 0.08);
-    --slot-fg: rgba(236, 228, 247, 0.6);
-    --slot-border: rgba(236, 228, 247, 0.25);
-  }
 </style>
 </head>
 <body>
@@ -658,27 +643,27 @@ PLAY.</h1>
     </div>
     <div class="grid-3">
       <div class="work-card tall">
-        <image-slot id="label-aman" src="assets/p04_1.webp" placeholder="Aman Bangkok, created with Bocktailed label"></image-slot>
+        <img src="assets/p04_1.webp" alt="Aman Bangkok, created with Bocktailed label" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Aman Bangkok</span><span class="meta">with Bocktailed</span></div>
       </div>
       <div class="work-card tall">
-        <image-slot id="label-rosewood-chancery" src="assets/p05_1.webp" placeholder="Rosewood The Chancery, created with Bocktailed"></image-slot>
+        <img src="assets/p05_1.webp" alt="Rosewood The Chancery, created with Bocktailed" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Rosewood The Chancery</span><span class="meta">with Bocktailed</span></div>
       </div>
       <div class="work-card tall">
-        <image-slot id="label-aeromexico" src="assets/p06_1.webp" placeholder="Aeromexico, created with Bocktailed"></image-slot>
+        <img src="assets/p06_1.webp" alt="Aeromexico, created with Bocktailed" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Aeromexico</span><span class="meta">with Bocktailed</span></div>
       </div>
       <div class="work-card tall">
-        <image-slot id="label-belmond" src="assets/p07_1.webp" placeholder="Belmond Castello di Casole, created with Bocktailed"></image-slot>
+        <img src="assets/p07_1.webp" alt="Belmond Castello di Casole, created with Bocktailed" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Belmond Castello di Casole</span><span class="meta">with Bocktailed</span></div>
       </div>
       <div class="work-card tall">
-        <image-slot id="label-castiglion" src="assets/p08_1.webp" placeholder="Rosewood Castiglion del Bosco, created with Bocktailed"></image-slot>
+        <img src="assets/p08_1.webp" alt="Rosewood Castiglion del Bosco, created with Bocktailed" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Rosewood Castiglion del Bosco</span><span class="meta">with Bocktailed</span></div>
       </div>
       <div class="work-card tall">
-        <image-slot id="label-lattine" src="assets/p09_1.webp" placeholder="Bocktailed Lattine"></image-slot>
+        <img src="assets/p09_1.webp" alt="Bocktailed Lattine" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Bocktailed cans</span><span class="meta">06</span></div>
       </div>
     </div>
@@ -692,7 +677,7 @@ PLAY.</h1>
     </div>
     <div class="ad-solo">
       <div class="work-card wide">
-        <image-slot id="ad-coqtail" src="assets/p11_1.webp" placeholder="SeiBellissimi × Coqtail"></image-slot>
+        <img src="assets/p11_1.webp" alt="SeiBellissimi × Coqtail" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">SeiBellissimi × Coqtail</span><span class="meta">01</span></div>
       </div>
     </div>
@@ -706,37 +691,37 @@ PLAY.</h1>
     </div>
     <div class="grid-2" style="margin-bottom:24px">
       <div class="work-card wide">
-        <image-slot id="cd-seibellissimi-doc" src="assets/p13_1.webp" placeholder="SeiBellissimi, video documentary"></image-slot>
+        <img src="assets/p13_1.webp" alt="SeiBellissimi, video documentary" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">SeiBellissimi · documentary</span><span class="meta">05</span></div>
       </div>
       <div class="work-card wide">
-        <image-slot id="cd-seibellissimi-com" src="assets/p14_1.webp" placeholder="SeiBellissimi, commercial video"></image-slot>
+        <img src="assets/p14_1.webp" alt="SeiBellissimi, commercial video" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">SeiBellissimi · commercial</span><span class="meta">06</span></div>
       </div>
     </div>
     <div class="grid-3">
       <div class="work-card square">
-        <image-slot id="cd-bocktailed-photo" src="assets/p15_1.webp" placeholder="Bocktailed, photo shooting"></image-slot>
+        <img src="assets/p15_1.webp" alt="Bocktailed, photo shooting" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Bocktailed</span><span class="meta">01</span></div>
       </div>
       <div class="work-card square">
-        <image-slot id="cd-ratafia" src="assets/p17_1.webp" placeholder="Ratafia Rossi, photo shooting"></image-slot>
+        <img src="assets/p17_1.webp" alt="Ratafia Rossi, photo shooting" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Ratafia Rossi</span><span class="meta">02</span></div>
       </div>
       <div class="work-card square">
-        <image-slot id="cd-seibellissimi-photo" src="assets/p19_1.webp" placeholder="SeiBellissimi, photo shooting"></image-slot>
+        <img src="assets/p19_1.webp" alt="SeiBellissimi, photo shooting" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">SeiBellissimi</span><span class="meta">02</span></div>
       </div>
       <div class="work-card square">
-        <image-slot id="cd-mancino" src="assets/p21_1.webp" placeholder="Mancino Vermouth, photo shooting"></image-slot>
+        <img src="assets/p21_1.webp" alt="Mancino Vermouth, photo shooting" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Mancino Vermouth</span><span class="meta">03</span></div>
       </div>
       <div class="work-card square">
-        <image-slot id="cd-rinomato" src="assets/p23_1.webp" placeholder="Rinomato Aperitivo, photo shooting"></image-slot>
+        <img src="assets/p23_1.webp" alt="Rinomato Aperitivo, photo shooting" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Rinomato Aperitivo</span><span class="meta">04</span></div>
       </div>
       <div class="work-card square">
-        <image-slot id="cd-extra" src="assets/p15_2.webp" placeholder="Behind the scenes"></image-slot>
+        <img src="assets/p15_2.webp" alt="Behind the scenes" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">Behind the scenes</span><span class="meta"></span></div>
       </div>
     </div>
@@ -750,7 +735,7 @@ PLAY.</h1>
     </div>
     <div class="ad-solo">
       <div class="work-card wide">
-        <image-slot id="bi-anto" src="assets/p27_1.webp" placeholder="ANTO, Pizza e Aperitivi (Singapore)"></image-slot>
+        <img src="assets/p27_1.webp" alt="ANTO, Pizza e Aperitivi (Singapore)" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">ANTO Pizza e Aperitivi · Singapore</span><span class="meta">01</span></div>
       </div>
     </div>
@@ -764,23 +749,23 @@ PLAY.</h1>
     </div>
     <div class="grid-3">
       <a class="work-card square" href="https://instagram.com/seibellissimi" target="_blank" rel="noopener noreferrer">
-        <image-slot id="sm-seibellissimi" src="assets/p30_1.webp" placeholder="@seibellissimi grid"></image-slot>
+        <img src="assets/p30_1.webp" alt="@seibellissimi grid" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">@seibellissimi</span><span class="meta">01</span></div>
       </a>
       <a class="work-card square" href="https://instagram.com/anto.pizzeria" target="_blank" rel="noopener noreferrer">
-        <image-slot id="sm-anto" src="assets/p30_2.webp" placeholder="@anto.pizzeria grid"></image-slot>
+        <img src="assets/p30_2.webp" alt="@anto.pizzeria grid" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">@anto.pizzeria</span><span class="meta">02</span></div>
       </a>
       <a class="work-card square" href="https://instagram.com/bocktailed" target="_blank" rel="noopener noreferrer">
-        <image-slot id="sm-bocktailed" src="assets/p30_3.webp" placeholder="@bocktailed grid"></image-slot>
+        <img src="assets/p30_3.webp" alt="@bocktailed grid" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">@bocktailed</span><span class="meta">03</span></div>
       </a>
       <a class="work-card square" href="https://instagram.com/ratafiarossi" target="_blank" rel="noopener noreferrer">
-        <image-slot id="sm-ratafia" src="assets/p30_4.webp" placeholder="@ratafiarossi grid"></image-slot>
+        <img src="assets/p30_4.webp" alt="@ratafiarossi grid" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">@ratafiarossi</span><span class="meta">04</span></div>
       </a>
       <a class="work-card square" href="https://instagram.com/mancinovermouth" target="_blank" rel="noopener noreferrer">
-        <image-slot id="sm-mancino" src="assets/p30_5.webp" placeholder="@mancinovermouth grid"></image-slot>
+        <img src="assets/p30_5.webp" alt="@mancinovermouth grid" loading="lazy" decoding="async" />
         <div class="caption"><span class="title">@mancinovermouth</span><span class="meta">05</span></div>
       </a>
       <a href="/start.html" class="work-card square" style="background:var(--ink); color:var(--cream); justify-content:center; align-items:center; padding: 32px; text-align:center;">
@@ -808,7 +793,7 @@ PLAY.</h1>
 
   <div class="founders">
     <div class="founder">
-      <image-slot id="founder-michela" src="assets/founder_michela.webp" placeholder="Michela Mancino" shape="circle"></image-slot>
+      <img src="assets/founder_michela.webp" alt="Michela Mancino" loading="lazy" decoding="async" />
       <div>
         <div class="name">Michela Mancino</div>
         <div class="role">Co-founder · Creative</div>
@@ -816,7 +801,7 @@ PLAY.</h1>
       </div>
     </div>
     <div class="founder">
-      <image-slot id="founder-cristiano" src="assets/founder_cristiano.webp" placeholder="Cristiano Demurtas" shape="circle"></image-slot>
+      <img src="assets/founder_cristiano.webp" alt="Cristiano Demurtas" loading="lazy" decoding="async" />
       <div>
         <div class="name">Cristiano Demurtas</div>
         <div class="role">Co-founder · Direction</div>
