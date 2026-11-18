@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Let's play — Lila Factory</title>
-<meta name="description" content="Start a project with Lila Factory. Tell us about your brand — we reply within 48 hours." />
+<title>Private enquiry · Lila Factory</title>
+<meta name="robots" content="noindex" />
+<meta name="description" content="Private enquiries for Lila Factory, brand studio for hospitality, food and drink." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;700;800&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -119,7 +120,7 @@
     color: var(--mute);
   }
   .field label .req { color: var(--ink); }
-  .field input, .field textarea {
+  .field input, .field textarea, .field select {
     font-family: var(--display);
     font-weight: 500;
     font-size: 22px;
@@ -133,7 +134,9 @@
     width: 100%;
     transition: border-color 0.25s ease;
   }
-  .field input:focus, .field textarea:focus {
+  .field select { appearance: none; -webkit-appearance: none; border-radius: 0; cursor: pointer; background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23000'/%3E%3C/svg%3E") no-repeat right 4px center; }
+  .field select:invalid { color: rgba(0,0,0,0.38); }
+  .field input:focus, .field textarea:focus, .field select:focus {
     outline: 0;
     border-bottom-color: var(--ink);
   }
@@ -206,20 +209,20 @@
 
 <nav class="nav">
   <a class="wordmark" href="/">Lila Factory</a>
-  <a class="back" href="/">← Back</a>
+  <a class="back" href="/">Back</a>
 </nav>
 
 <main class="page">
   <aside>
-    <div class="page-meta">Start a project · 01</div>
+    <div class="page-meta">Private enquiry</div>
     <h1 class="page-title">Let's <em>play.</em></h1>
-    <p class="page-lead">Tell us about your brand, your idea, your stuck-in-the-mud problem — anything in between.</p>
-    <p class="page-side-note">We read every message ourselves. Expect a reply from Michela or Cristiano within 48 hours, often sooner.</p>
+    <p class="page-lead">We work with a small number of hotels, restaurants and drinks houses at a time. Tell us where you are and where you want to go.</p>
+    <p class="page-side-note">Every enquiry is read by Michela or Cristiano. If there is a fit, we will reply within two working days to arrange a conversation.</p>
   </aside>
 
   <form action="https://formsubmit.co/e56af5493f072adb36f41d79e4f4e33e" method="POST">
     <!-- Formsubmit configuration (hidden) -->
-    <input type="hidden" name="_subject" value="New project inquiry — Lila Factory" />
+    <input type="hidden" name="_subject" value="Private enquiry · Lila Factory" />
     <input type="hidden" name="_template" value="table" />
     <input type="hidden" name="_captcha" value="false" />
     <input type="hidden" name="_next" value="https://lilafactory.com/thanks.html" />
@@ -237,17 +240,43 @@
 
     <div class="field">
       <label for="brand">Brand / company</label>
-      <input type="text" id="brand" name="brand" placeholder="Optional — but it helps" />
+      <input type="text" id="brand" name="brand" placeholder="Hotel, restaurant, bar or brand" />
     </div>
 
     <div class="field">
-      <label for="message">Tell us about your idea <span class="req">*</span></label>
-      <textarea id="message" name="message" placeholder="A few lines are enough. We'll ask the rest." required></textarea>
+      <label for="type">What are you building? <span class="req">*</span></label>
+      <select id="type" name="type" required>
+        <option value="" disabled selected>Choose one</option>
+        <option>A new brand or opening</option>
+        <option>Ongoing brand care for an existing brand</option>
+        <option>A bespoke edition (labels, objects, gifts)</option>
+        <option>Something else</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="market">Where?</label>
+      <input type="text" id="market" name="market" placeholder="City or markets" />
+    </div>
+
+    <div class="field">
+      <label for="timing">Timing</label>
+      <select id="timing" name="timing">
+        <option value="" disabled selected>Choose one</option>
+        <option>Within 3 months</option>
+        <option>3 to 6 months</option>
+        <option>Later</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="message">Tell us about it <span class="req">*</span></label>
+      <textarea id="message" name="message" placeholder="A few lines are enough. We will ask the rest." required></textarea>
     </div>
 
     <div class="submit-row">
-      <span class="submit-note">We reply within 48h</span>
-      <button type="submit" class="submit">Send<span class="arrow">→</span></button>
+      <span class="submit-note">Reply within two working days</span>
+      <button type="submit" class="submit">Send</button>
     </div>
   </form>
 </main>
